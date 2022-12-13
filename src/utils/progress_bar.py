@@ -18,3 +18,19 @@ def print_progress_bar(iteration, total, prefix='', suffix='', decimals=1, lengt
 	# Print new line on complete
 	if iteration == total:
 		print()
+KB = 1024
+MB = 1048576
+GB = 1073741824
+
+def toHumanReadable(bytes):
+    inKB = round(bytes / KB, 2)
+    inMB = round(bytes / MB, 2) 
+    inGB = round(bytes / GB, 2) 
+    if inGB:
+        return str(inGB)+" GB"
+    elif inMB:
+        return str(inMB)+" MB"
+    elif inKB:
+        return str(inKB)+" KB"
+    else:
+        return str(bytes)+ " bytes"

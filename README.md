@@ -18,7 +18,7 @@ Once the program initializes, any files can be added to the users shared folder 
 
 > ### CLI.py : main app
 > Developped with interactive User experience
-> ### utils : package made for recyclable needed functions
+> ### utils : package made for some needed functions
 >   * [artist](./src/utils/artist.py) : util generating the ascii art of console 
 >   * [UI_colors](./src/utils/UI_colors.py) : shell colors to make the interacion between user and terminal easier
 >   * [proress_bar](./src/utils/progress_bar.py) : an interactive progress bar for user
@@ -36,6 +36,7 @@ Once the program initializes, any files can be added to the users shared folder 
 
 ## Authors :rocket:
 
+* **Ghassen Abida**
 * **Oussema Jaouadi**
 * **Taha Mediouni**
 

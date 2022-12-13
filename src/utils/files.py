@@ -16,8 +16,11 @@ class FileReader():
     def get_file_bytes(self):
     # """Returns a bytes array of the file that can be sent"""
         byteContent = b""
-        with open(self.filepath,'rb') as file:
-            byteContent += file.read()
+        try:
+            with open(self.filepath,'rb') as file:
+                byteContent += file.read()
+        except IsADirectoryError or FileNotFoundError :
+                SystemExit()
         return byteContent
 
     def hash_file(self):
@@ -36,8 +39,8 @@ class FileReader():
         file = open(self.filepath, 'rb')
         fileData = file.read()
         file.close()
-        bytes = len(data)
-        chunkNum = bytes/chunkSize
+        bytes = len(fileData)
+        chunkNum = bytes//chunkSize
         if (bytes%chunkSize):
             chunckNum = chunkNum + 1
 
@@ -51,17 +54,18 @@ class FileReader():
             fn1 = "chunk%s" % i
             chunkNames.append(fn1)
             file = open(fn1, 'wb')
-            file.write(data[i:i+ chunkSize])
+            file.write(fileData[i:i+ chunkSize])
             file.close()
 
     def mergeFiles(self, chunkNum, chunkSize):
+        dataList=[]
         #Not yet tested
         #Function is based on the implementation found at: http://bdurblg.blogspot.com/2011/06/python-split-any-file-binary-to.html
         for j in range(0,chunkNum):
-            chunkNum=i * chunkSize
+            chunkNum=j * chunkSize
             chunkName = self.filename+'%s'%chunkNum
             file = open(chunkName, 'rb')
-            dataList.append(f.read())
+            dataList.append(file.read())
             file.close()
             file = open(self.filename, 'wb')
             for data in dataList:

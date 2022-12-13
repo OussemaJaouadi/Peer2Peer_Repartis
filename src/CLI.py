@@ -52,7 +52,7 @@ class CLI():
                 sleep(1)
                 spinner.stop()
                 sleep(1)
-                exit()
+                sys.exit(1)
             usr_path = pathlib.Path(usr_selection)
 
             if (not usr_path.exists()):
@@ -101,7 +101,7 @@ class CLI():
                 sleep(1)
                 spinner.stop()
                 sleep(1)
-                sys.exit()
+                sys.exit(1)
 
             if (usr_input != "1" and usr_input != "2"):
 
@@ -130,7 +130,7 @@ class CLI():
                             sleep(1)
                             spinner.stop()
                             sleep(1)
-                            sys.exit()
+                            sys.exit(1)
                 elif (usr_input == "2"):
 
                     print()
@@ -157,7 +157,7 @@ class CLI():
                             sleep(1)
                             spinner.stop()
                             sleep(1)
-                            exit()
+                            exit(1)
 
                 is_valid_input = True
 
@@ -175,7 +175,7 @@ class CLI():
                 sleep(1)
                 spinner.stop()
                 sleep(1)
-                exit()
+                exit(1)
             lo_port_re = r"lo:(\d+)"
             ip_port_re = r"(\d+\.\d+\.\d+\.\d+):(\d+)"
 
@@ -226,7 +226,7 @@ class CLI():
                 sleep(1)
                 spinner.stop()
                 sleep(1)
-                exit()
+                exit(1)
             if (usr_input != "1" and usr_input != "2"):
 
                 UI_colors.print_red("[ERROR] input out of range\n")

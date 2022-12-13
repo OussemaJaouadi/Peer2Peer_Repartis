@@ -2,6 +2,7 @@ from utils.files import FileReader
 import os
 import re
 import sys
+from utils import UI_colors
 
 STR_LENGTH = 8
 INT_LENGTH = 8
@@ -11,7 +12,7 @@ class Protocol():
     @classmethod
     def req_file_string(self, filename = None):
         if (filename):
-            print("This will be added")
+            UI_colors.print_yellow("This will be added")
         return self.str_to_fixed_width_string("reqfile")
 
     @classmethod
@@ -37,7 +38,7 @@ class Protocol():
             file_name_bytes = file_name.encode("UTF-8")
             file_name_bytes_msg = self.int_to_fixed_width_bytes(len(file_name_bytes)) + file_name_bytes
 
-            return_bytes = file_name_bytes_msg + file_bytes_msg
+            return_bytes = file_name_bytes_msg 
 
             return (self.rej_file_bytes() + return_bytes)
 
@@ -169,14 +170,11 @@ class Protocol():
                 return addrs
 
             else:
-                print("<<ERROR: invalid config file format>>")
-                print("exiting...")
+                UI_colors.print_red("[ERROR] invalid config file format, exiting")
                 sys.exit(1)
 
         except FileNotFoundError:
-            print("<<ERROR: no config file found>>")
-            print("please reinitialize your shared_dir")
-            print("exiting...")
+            UI_colors.print_red("[ERROR] no config file found ,please reinitialize your shared_dir , exiting")
             sys.exit(1)
 
     @classmethod

@@ -1,4 +1,5 @@
 from utils.files import FileReader
+from utils import UI_colors
 from Audit.Audit import Audit
 from utils.files import DirectoryReader
 from Protocol import Protocol
@@ -7,6 +8,7 @@ import uuid
 import socket
 import os
 import re
+import sys
 
 class ClientConnectionThread(Thread):
     # """Utilizes TCP to initialize a thread for every peer connection in the network"""
@@ -58,8 +60,12 @@ class ClientConnectionThread(Thread):
 
     def handle_join_network_request(self):
         addr_str = self.get_sized_payload().decode("utf-8")
-        new_ip, new_port = self.find_ip_and_port_addr(addr_str)
-
+        try:
+            new_ip, new_port = self.find_ip_and_port_addr(addr_str)
+        except IndexError :
+            UI_colors.print_red('[An error happned] : exiting!')
+            print(IndexError)
+            sys.exit(1)
         ack_join_bytes = Protocol.ack_join_bytes(self.address_file)
         self.client_connection.sendall(ack_join_bytes)
 
